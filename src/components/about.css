@@ -139,5 +139,12 @@ body {
   .team-activities {
     font-size: 1.4rem;
   }
+  .center-text{
+    text-align: center;
+    font-weight: 800;
+    color-scheme: blue;
+    box-sizing: border-box 2px blue;
+    font-size: 40px;
+  }
 
   

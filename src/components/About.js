@@ -84,23 +84,23 @@ const About = () => {
               <div className="testimonial-content">
                 <h3 className="testimonial-heading">Amazing experience!</h3>
                 <blockquote className="testimonial-text">
-                Here is the testimonial data.
+                  Hello everyone, myself M.Azad and I visited India last week, it was a great experience and I would recommened everyone to use this service and suggest your friends and family members also.
                 </blockquote>
               </div>
             </div>
-            <div className="testimonial-btns">
+            {/* <div className="testimonial-btns">
               <button className="testimonial-slider__btn testimonial__btn--left">
                 <span>&larr;</span>
               </button>
               <button className="testimonial-slider__btn testimonial__btn--right">
                 <span>&rarr;</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
-      
-    {/*Here we have the teams section */}
+
+      {/*Here we have the teams section */}
       <h2 className='ourteam'>Our Team</h2>
       <section className="section-team" id="team">
         <div className="container">
@@ -137,7 +137,7 @@ const About = () => {
                 <img src={pic3} alt="team member" />
               </figure>
               <div className="team-content">
-                <h3 className="team-name">Ema i</h3>
+                <h3 className="team-name">Ema Williams</h3>
                 <span className="team-position">Tour Guide</span>
                 <span className="team-activities">27 Activities</span>
               </div>
