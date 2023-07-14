@@ -12,6 +12,7 @@ import pic4 from './Venice.jpg'
 import vid1 from './videointro.mp4'
 
 import context from 'react-bootstrap/esm/AccordionContext';
+import { UitkParagraph } from 'uitk-react-text';
 const options = {
   client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
   auto_select: false,
@@ -133,7 +134,10 @@ const Home = () => {
           </div>
 
           <div className='para'>
-            <h4>Expedia Group, Inc., headquartered in Seattle, owns and operates travel fare aggregators and travel metasearch engines, including Expedia.com, Hotels.com, Vrbo, Travelocity, Hotwire.com, Orbitz, Ebookers, CheapTickets, CarRentals.com, Expedia Cruises, Wotif, and Trivago.</h4>
+            
+            <UitkParagraph>
+            Expedia Group, Inc., headquartered in Seattle, owns and operates travel fare aggregators and travel metasearch engines, including Expedia.com, Hotels.com, Vrbo, Travelocity, Hotwire.com, Orbitz, Ebookers, CheapTickets, CarRentals.com, Expedia Cruises, Wotif, and Trivago.
+            </UitkParagraph>
           </div>
         </Container>
 
