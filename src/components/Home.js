@@ -1,157 +1,113 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useGoogleOneTapLogin } from 'react-google-one-tap-login'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
-import ReactPlayer from 'react-player';
 import './home.css'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import pic1 from './Istanbul.jpg'
 import pic2 from './Louvre.jpg'
 import pic3 from './Vatican-City.jpg'
 import pic4 from './Venice.jpg'
-import vid1 from './videointro.mp4'
+// import vid1 from './videofinal.mp4'
+import loy from './Gold_Member__1_-removebg-preview.png'
+import App, { AppContext } from '../App';
 
+import logo from './eglogo3-removebg-preview.png'
 import context from 'react-bootstrap/esm/AccordionContext';
+import { toBeRequired } from '@testing-library/jest-dom/matchers';
+import { UitkBadgeLoyalty } from 'uitk-react-badge'
+import { flushSync } from 'react-dom';
 const options = {
   client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
   auto_select: false,
   context: "signin",
 }
-// function Home() {
-//   const [loginData, setLoginData] = useState(
-//     localStorage.getItem("loginData")
-//       ? JSON.parse(localStorage.getItem("loginData"))
-//       : null
-//   );
-//   useEffect(() => {
-//     if (!loginData) {
-//       // useGoogleOneTapLogin(options, async (response) => {
-//       //   console.log(response);
-//       //   const res = await fetch("/api/google-login", {
-//       //     method: "POST",
-//       //     body: JSON.stringify({
-//       //       token: response.credential,
-//       //     }),
-//       //     headers: {
-//       //       "Content-Type": "application/json",
-//       //     },
-//       //   });
-
-//       //   const data = await res.json();
-//       //   setLoginData(data);
-//       //   localStorage.setItem("loginData", JSON.stringify(data));
-//       // });
-//     }
-//   }, [loginData]);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("loginData");
-//     setLoginData(null);
-//   };
-//   return (
-//     <div>
-//       <Container classNameName="HomePage">
-//         <div className="container">
-//           <h3 className="title">
-//             <span className="title-word title-word-1">Welcome</span>
-//             <span className="title-word title-word-2">to</span>
-//             <span className="title-word title-word-3">EG</span>
-//             <span className="title-word title-word-4">Login Project</span>
-//           </h3>
-//         </div>
-//         <ReactPlayer url="https://www.youtube.com/watch?v=35npVaFGHMY" loop="true" controls="false" width="200" playing="true" />
-//         <div classNameName='para'>
-//           <p>Expedia Group, Inc., headquartered in Seattle, owns and operates travel fare aggregators and travel metasearch engines, including Expedia.com, Hotels.com, Vrbo, Travelocity, Hotwire.com, Orbitz, Ebookers, CheapTickets, CarRentals.com, Expedia Cruises, Wotif, and Trivago.</p>
-//         </div>
-//       </Container>
-
-//       <div className="container">
-//         <div className="row">
-//           <div className="col-md-12 text-center">
-//             <h3 className="animate-charcter">Power Global Travel For Everyone,Everywhere!!</h3>
-//           </div>
-//         </div>
-//       </div>
-//       <div>
-//           {!loginData ? (
-//             <div>
-//               <h3>
-//                 You "Shivank Gupta" logged in as shivanklords9582@gmail.com
-//               </h3>
-//               <button onClick={handleLogout}>Logout</button>
-//             </div>
-//           ) : (
-//             <div>Not logged in</div>
-//           )}
-//         </div>
-//     </div>
-
-//   )
-// }
 const Home = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [logeed, islogged] = useState(false);
-  const [inPage, setPage] = useState("")
+  const { userLogged, userInfo, updateUserLogin, updateUserInfo, showPrompt, updatePromptStatus } = useContext(AppContext);
   useGoogleOneTapLogin({ //make a conditional hook here conidton would be that the user is logged in or not
-    auto_select: false,
-
+    autoSelect: false,
     onSuccess: (Response) => {
-      console.log("Success Login")
-
-      setName(Response.given_name);
-      setEmail(Response.email);
-      islogged(true);
+      console.log(Response);
+      updateUserLogin(true);
+      updateUserInfo(Response);
+      updatePromptStatus(false);
+      // const value=true;
+      // localStorage.setItem('logged',value.toString());
       //here i have to stop the loop to repeatedly show the login portal to the user and alos on refershing the login page the user shall see the successful login tag
-
     },
-    onError: (Response) => {
-      console.log("Error")
-      islogged(false);
+    onError: () => {
+      console.log("Error");
+      updateUserInfo(null);
+      updateUserLogin(false);
+      updatePromptStatus(false);
+      // const value=false;
+      // localStorage.setItem('logged',value.toString());
     },
     googleAccountConfigs: {
       client_id: "614186185696-s50t20rog34rso3g7fbtsjo4mcgdek9f.apps.googleusercontent.com"
-    }
+    },
+    disabled: (userLogged && userInfo),
+    //disableCancelOnUnmount:(true)
+    //what happens if the user refuses to enter into the state ?
   })
-  function openApp(){
+  function openApp() {
     window.open("https://expediagroup.com");
   }
+  //signs out the user from the state being used
+  function signOutFunc() {
+    updatePromptStatus(true);
+    updateUserInfo(null);
+    updateUserLogin(false);
+    // const value=false;
+    // localStorage.setItem('logged',value.toString());
+  }
+
   return (
     <>
+      {showPrompt ? <div className='one-tap-prompt'>
+        <img src={logo} alt="Product Logo" className='prompt-logo' />
+        <div className='prompt-text'>Sign in to unlock amazing deals and discounts</div>
+      </div> : <div></div>}
+      {(userLogged && userInfo) ? <div className='premium'>
+        <img src={userInfo.picture} alt="user photo" className='premium-logo' />
+        <img src={loy} className='premium-text' />
+
+      </div> : <div></div>}
+      {/* <div className="overlay">
+                <h2 className='overlay-text'>Power Global Travel</h2>
+      </div> */}
       <div className="hello">
         <Container className="HomePage">
-       
-          <div className="video-container">
-            
 
-            <video className="vid" width="800" height="600" autoplay="autoplay" loop="true" >
-              <source src={vid1} />
-              <div className="text-overlay">
-                Power Global Travel
-              </div>
+          <div className="video-container">
+
+
+            <video className="vid" width="400" height="320" autoplay="autoplay" loop muted>
+              {/* <source src={vid1} /> */}
+              video placeholder
             </video>
           </div>
 
-          <div className='para'>
+          {/* <div className='para'>
             <h4>Expedia Group, Inc., headquartered in Seattle, owns and operates travel fare aggregators and travel metasearch engines, including Expedia.com, Hotels.com, Vrbo, Travelocity, Hotwire.com, Orbitz, Ebookers, CheapTickets, CarRentals.com, Expedia Cruises, Wotif, and Trivago.</h4>
-          </div>
+          </div> */}
         </Container>
-
-        <div className="container">
+        {/* 
+        <div className="overlay container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <h3 className="animate-charcter">Power Global Travel For Everyone,Everywhere!!</h3>
+              <h3 className="overlay-text animate-charcter">Power Global Travel For Everyone,Everywhere!!</h3>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className='signed-in-window'>
-          {logeed ?
+          {userLogged && userInfo ?
             <div>
-              Hello Shivank Gupta , you ar signed in as shivanklords9582@gmail.com
+              Hello {userInfo.given_name} , you are successfully signed in as {userInfo.email}
               <div>
               </div>
               <button className="button-45"
-                onClick={() => window.location.reload()}>
+                onClick={() => signOutFunc()}>
                 Sign Out
               </button>
             </div> :
@@ -159,18 +115,18 @@ const Home = () => {
           }
         </div>
       </div>
+      {/* { here is the destination channel} */}
 
-      
-
-      {/*here is the serach panel*/}
-
+      {/*here is the search panel*/}
       <div className="search-form-container">
-        <form action="#" class="form search-form" method="post">
+
+        <form action="#" className="form search-form" method="post">
+
           <div className="search-form__elements">
             <input
               type="search"
               name="location"
-              placeholder="Where are you going?"
+              placeholder="Where are you from?"
               required
             />
             <select name="activities" id="select-activity" required>
@@ -377,7 +333,7 @@ const Home = () => {
               </h3>
               <p className="cta-text">
                 Book your next adventure with our expert team in our office. We
-                are open 7 days a week from 10 AM to 6 PM. 
+                are open 7 days a week from 10 AM to 6 PM.
               </p>
             </div>
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.css';
-import logo from './4136591-removebg-preview.png';
-
+import logo from './EG_IconLogo_White-on-Transparent_04-27-2023.png';
+import logo2 from './EG_WordmarkLogo_White-on-Transparent_04-27-2023.png'
 function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
 
@@ -22,14 +22,15 @@ function Navbar() {
   }, []);
 
   return (
-    <div className={`navbar ${isSticky ? 'sticky' : ''}`}>
-      <h2>EG Login Project</h2>
+    <div className='navbar'>
+      <img src={logo2} className='logo2'/>
+      <br/>
       <div className='nav-link'>
-        <img src={logo} width="50" height="50" alt="EG" className='logo' />
         <NavLink activeClassName="active" className='link' to="/">Home</NavLink>
         <NavLink activeClassName="active" className='link' to="/about">About</NavLink>
         <NavLink activeClassName="active" className='link' to="/login">Login</NavLink>
       </div>
+      {isSticky}
     </div>
   );
 }
