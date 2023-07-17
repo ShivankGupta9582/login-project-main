@@ -5,7 +5,6 @@ import pic2 from './agent-2.jpg';
 import pic3 from './agent-3.jpg';
 import pic4 from './agent-4.jpg';
 
-
 const About = () => {
   const handleClick = () => {
     const email = 'pkern@expediagroup.com';
@@ -16,12 +15,37 @@ const About = () => {
 
     window.location.href = mailtoLink;
   };
-
+  const imageData = [
+    {
+      label: "Image 1",
+      alt: "image1",
+      url:
+        "https://lh5.googleusercontent.com/xo6zDzj4Mq8JTuh31DRdzWPkmeekU1ykdvy7gmdGNkBnVzHoULgCA_MpL1ybOV2GKEkbvmswUl0iQW0lvnNQe3gqOFi_-bbt3MBzOAla29FvVN753jPZS87Bn7HyXoQ-dwA-ioYg"
+    },
+    {
+      label: "Image 2",
+      alt: "image2",
+      url:
+        "https://cdn.thomasnet.com/insights-images/eaf2ea91-c0ca-488d-ab63-af480b6f78cb/750px.png"
+    },
+    {
+      label: "Image 3",
+      alt: "image3",
+      url: "https://moneyinc.com/wp-content/uploads/2018/11/Willow-750x500.jpg"
+    },
+    {
+      label: "Image 4",
+      alt: "image4",
+      url:
+        "https://japan.stripes.com/sites/default/files/styles/community_site_carousel_750x500/public/article-images/main_13.jpg?itok=_GELFbpY"
+    }
+  ];
   return (
     <>
+    
       <div class="about-section">
-        <h1>About The Project</h1>
-        <p>This Project is made on the sole purpose for checking the functionality of Google One Tap Sign In and does not in foster any official documentation and information regarding Expedia's componenents. The project is basically a prototype and is for educational purpose only</p>
+        <h1 style={{ color: 'blue' }}>About The Project</h1>
+        <h4 className='h4'>This Project is made on the sole purpose for checking the functionality of Google One Tap Sign In and does not in foster any official documentation and information regarding Expedia's componenents. The project is basically a prototype and is for educational purpose only.</h4>
       </div>
       {/* Here add some testimonials*/}
       <section className="section-testimonials" id="testimonials">
@@ -105,7 +129,7 @@ const About = () => {
       <section className="section-team" id="team">
         <div className="container">
           <span className="subheading"></span>
-          <h2 className="heading-secondary heading-team">
+          <h2 className="heading-secondary heading-team" style={{textAlign:"center"}}>
             Meet Our Mentors and profesisonal guides to help you out !!
           </h2>
 
@@ -148,7 +172,7 @@ const About = () => {
                 <img src={pic4} alt="team member" />
               </figure>
               <div className="team-content">
-                <h3 className="team-name">Christine Beck</h3>
+                <h3 className="team-name">Christine Becker</h3>
                 <span className="team-position">Tour Guide</span>
                 <span className="team-activities">56 Activities</span>
               </div>
@@ -156,6 +180,67 @@ const About = () => {
           </div>
         </div>
       </section>
+      {/*Added a footer here also*/}
+      <footer className="text-center text-white" style={{ backgroundColor: '#caced1' }}>
+        <div className="container p-4">
+          <section className="">
+            <div className="row">
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/111.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/112.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/114.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/115.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-2 col-md-12 mb-4 mb-md-0">
+                <div className="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/116.webp" className="w-100" alt="City" />
+                  <a href="#!">
+                    <div className="mask" style={{ backgroundColor: 'rgba(251, 251, 251, 0.2)' }}></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+          © 2023 Copyright:
+          <a className="text-white" href="https://expediagroup.com/">Shivank Gupta EG Login Project</a>
+        </div>
+      </footer>
     </>
   )
 }
