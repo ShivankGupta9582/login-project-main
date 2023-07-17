@@ -8,7 +8,7 @@ import pic1 from './Istanbul.jpg'
 import pic2 from './Louvre.jpg'
 import pic3 from './Vatican-City.jpg'
 import pic4 from './Venice.jpg'
-// import vid1 from './videofinal.mp4'
+ import vid1 from './videofinal.mp4'
 import loy from './Gold_Member__1_-removebg-preview.png'
 import App, { AppContext } from '../App';
 
@@ -83,8 +83,8 @@ const Home = () => {
 
 
             <video className="vid" width="400" height="320" autoplay="autoplay" loop muted>
-              {/* <source src={vid1} /> */}
-              video placeholder
+              <source src={vid1} />
+           
             </video>
           </div>
 
